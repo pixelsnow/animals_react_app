@@ -20,8 +20,19 @@ class Main extends Component {
     console.log("deleted " + animal_name);
   };
 
+  animal_cards = animals.map((animal) => (
+    <Card
+      name={animal.name}
+      key={animal.name}
+      likes={animal.likes}
+      like={this.likeAnimal}
+      unlike={this.unlikeAnimal}
+      delete={this.deleteAnimal}
+    />
+  ));
+
   render() {
-    const animal_cards = this.state.animals.map((animal) => (
+    /* const animal_cards = this.state.animals.map((animal) => (
       <Card
         name={animal.name}
         key={animal.name}
@@ -30,10 +41,10 @@ class Main extends Component {
         unlike={this.unlikeAnimal}
         delete={this.deleteAnimal}
       />
-    ));
+    )); */
     return (
       <main>
-        <div className="card_container">{animal_cards}</div>
+        <div className="card_container">{this.animal_cards}</div>
       </main>
     );
   }
