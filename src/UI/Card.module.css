@@ -1,0 +1,46 @@
+.card {
+  background-color: lightcoral;
+  width: 250px;
+  position: relative;
+  border-radius: 0.5rem;
+}
+
+.card img {
+  width: 250px;
+  height: 250px;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.card .info {
+  min-height: 100px;
+  padding: 0.5rem 1.5rem 1.5rem;
+  background-color: #333;
+  color: white;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  background-color: white;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.2rem;
+  margin: 0 0.3rem;
+}
+
+.delete_btn {
+  margin: 0;
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  top: 0.8rem;
+  right: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.like_btn {
+}
