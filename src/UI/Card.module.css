@@ -1,46 +1,81 @@
+:root {
+  --card-bg: white;
+  --card-text: black;
+  --card-width: 200px;
+}
+
 .card {
-  background-color: lightcoral;
-  width: 250px;
+  background-color: var(--card-bg);
+  width: var(--card-width);
   position: relative;
   border-radius: 0.5rem;
 }
 
 .card img {
-  width: 250px;
-  height: 250px;
+  width: var(--card-width);
+  height: var(--card-width);
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .card .info {
-  min-height: 100px;
-  padding: 0.5rem 1.5rem 1.5rem;
-  background-color: #333;
-  color: white;
+  min-height: 50px;
+  padding: 0 1.5rem 1rem;
+  background-color: var(--card-bg);
+  color: var(--card-text);
   border-radius: 0 0 0.5rem 0.5rem;
+  text-align: center;
+}
+
+.card .info h3 {
+  margin: 0.5rem 0;
+}
+
+.like_buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.like_buttons .heart {
+  margin: 0 1rem;
+  font-size: 1.2rem;
+  color: lightcoral;
 }
 
 button {
   font-family: inherit;
   font-size: inherit;
   border: none;
-  background-color: white;
-  padding: 0.3rem 0.5rem;
-  border-radius: 0.2rem;
-  margin: 0 0.3rem;
+  background-color: var(--card-text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: 0.5rem;
+  color: white;
+  /* border: 1px solid black; */
+}
+
+button span {
+  font-size: 0.5rem;
+}
+
+.like_buttons button {
 }
 
 .delete_btn {
   margin: 0;
   position: absolute;
-  height: 2rem;
-  width: 2rem;
   top: 0.8rem;
   right: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
+  background-color: var(--card-bg);
+  color: var(--card-text);
 }
 
+.delete_btn span {
+  font-size: 1.2rem;
+}
 .like_btn {
 }

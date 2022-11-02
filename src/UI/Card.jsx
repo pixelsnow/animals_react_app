@@ -9,17 +9,24 @@ const Card = (props) => {
         alt={props.name}
       />
       <button className={classes.delete_btn} onClick={props.delete}>
-        X
+        <span className="material-symbols-outlined">close</span>
       </button>
       <div className={classes.info}>
-        <h3>{props.name}</h3>
-        <span className={classes.heart}>♥ {props.likes}</span>
-        <button className={classes.like_btn} onClick={props.like}>
-          Like
-        </button>
-        <button className={classes.unlike_btn} onClick={props.unlike}>
-          Unlike
-        </button>
+        <h3>{props.name.charAt(0).toUpperCase() + props.name.slice(1)}</h3>
+        <div className={classes.like_buttons}>
+          <button className={classes.unlike_btn} onClick={props.unlike}>
+            <span className="material-symbols-outlined">remove</span>
+          </button>
+          <span className={classes.heart}>
+            <span className={classes.heart_icon}>
+              &#128148; &#10084;&#65039;
+            </span>{" "}
+            {props.likes}
+          </span>
+          <button className={classes.like_btn} onClick={props.like}>
+            <span className="material-symbols-outlined">add</span>
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -25,7 +25,6 @@ class App extends Component {
   };
 
   unlikeAnimal = (animal_name) => {
-    console.log("unliked " + animal_name);
     this.setState((state) => {
       const updatedArray = state.animals.map((animal) => {
         if (animal.name === animal_name && animal.likes) {
@@ -81,7 +80,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <h1>Animals!</h1>
+          <h1>Search {this.state.animals.length} animals</h1>
           <input onChange={this.filterAnimals} type="text" />
         </header>
         <main>
@@ -93,3 +92,5 @@ class App extends Component {
 }
 
 export default App;
+
+//TODO: add normal heart
