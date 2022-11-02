@@ -6,6 +6,7 @@ import Card from "./UI/Card";
 class App extends Component {
   state = {
     animals: animals,
+    search: "",
   };
 
   likeAnimal = (animal_name) => {
@@ -27,10 +28,10 @@ class App extends Component {
     console.log("unliked " + animal_name);
     this.setState((state) => {
       const updatedArray = state.animals.map((animal) => {
-        if (animal.name === animal_name) {
+        if (animal.name === animal_name && animal.likes) {
           return {
             ...animal,
-            likes: animal.likes > 0 ? animal.likes - 1 : animal.likes,
+            likes: animal.likes - 1,
           };
         } else {
           return animal;
@@ -49,17 +50,24 @@ class App extends Component {
     this.setState({ animals: updatedArray });
   };
 
-  searchAnimals = (e) => {
-    this.setState({
-      animals: this.state.animals.filter((animal) => {
-        console.log(animal.name.includes(e.currentTarget.value));
-        return animal.name.includes(e.currentTarget.value);
-      }),
-    });
+  filterAnimals = (e) => {
+    this.setState({ search: e.target.value.trim() });
+    /* const updatedArray = animals.filter(
+      (animal) =>
+        animal.name.toLowerCase().slice(0, e.target.value.length) ===
+        e.target.value.toLowerCase()
+    );
+    this.setState({ animals: updatedArray }); */
   };
 
   render() {
-    const animal_cards = this.state.animals.map((animal) => (
+    const animalsFiltered = this.state.animals.filter(
+      (animal) =>
+        animal.name.toLowerCase().slice(0, this.state.search.length) ===
+        this.state.search.toLowerCase()
+    );
+
+    const animal_cards = animalsFiltered.map((animal) => (
       <Card
         name={animal.name}
         key={animal.name}
@@ -69,11 +77,12 @@ class App extends Component {
         delete={() => this.deleteAnimal(animal.name)}
       />
     ));
+
     return (
       <div className="App">
         <header>
           <h1>Animals!</h1>
-          <input onInput={this.searchAnimals} type="text" />
+          <input onChange={this.filterAnimals} type="text" />
         </header>
         <main>
           <div className="card_container">{animal_cards}</div>
