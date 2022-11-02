@@ -9,20 +9,44 @@ class App extends Component {
   };
 
   likeAnimal = (animal_name) => {
-    console.log("liked " + animal_name);
+    this.setState((state) => {
+      const updatedArray = state.animals.map((animal) => {
+        if (animal.name === animal_name) {
+          return { ...animal, likes: animal.likes + 1 };
+        } else {
+          return animal;
+        }
+      });
+      return {
+        animals: updatedArray,
+      };
+    });
   };
 
   unlikeAnimal = (animal_name) => {
     console.log("unliked " + animal_name);
+    this.setState((state) => {
+      const updatedArray = state.animals.map((animal) => {
+        if (animal.name === animal_name) {
+          return {
+            ...animal,
+            likes: animal.likes > 0 ? animal.likes - 1 : animal.likes,
+          };
+        } else {
+          return animal;
+        }
+      });
+      return {
+        animals: updatedArray,
+      };
+    });
   };
 
   deleteAnimal = (animal_name) => {
-    console.log("deleted " + animal_name);
     const updatedArray = this.state.animals.filter(
       (animal) => animal.name !== animal_name
     );
     this.setState({ animals: updatedArray });
-    console.log(this.state.animals);
   };
 
   searchAnimals = (e) => {
