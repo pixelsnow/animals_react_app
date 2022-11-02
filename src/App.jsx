@@ -18,35 +18,33 @@ class App extends Component {
 
   deleteAnimal = (animal_name) => {
     console.log("deleted " + animal_name);
+    const updatedArray = this.state.animals.filter(
+      (animal) => animal.name !== animal_name
+    );
+    this.setState({ animals: updatedArray });
+    console.log(this.state.animals);
   };
 
-  animal_cards = animals.map((animal) => (
-    <Card
-      name={animal.name}
-      key={animal.name}
-      likes={animal.likes}
-      like={this.likeAnimal}
-      unlike={this.unlikeAnimal}
-      delete={this.deleteAnimal}
-    />
-  ));
-
   searchAnimals = (e) => {
-    console.log(e.currentTarget.value);
-    this.animal_cards = this.animal_cards.filter((animal) => {
-      console.log(
-        animal.props.name
-          .toLowerCase()
-          .includes(e.currentTarget.value.toLowerCase())
-      );
-      console.log(animal.props.name.toLowerCase());
-      return animal.props.name
-        .toLowerCase()
-        .includes(e.currentTarget.value.toLowerCase());
+    this.setState({
+      animals: this.state.animals.filter((animal) => {
+        console.log(animal.name.includes(e.currentTarget.value));
+        return animal.name.includes(e.currentTarget.value);
+      }),
     });
   };
 
   render() {
+    const animal_cards = this.state.animals.map((animal) => (
+      <Card
+        name={animal.name}
+        key={animal.name}
+        likes={animal.likes}
+        like={() => this.likeAnimal(animal.name)}
+        unlike={() => this.unlikeAnimal(animal.name)}
+        delete={() => this.deleteAnimal(animal.name)}
+      />
+    ));
     return (
       <div className="App">
         <header>
@@ -54,7 +52,7 @@ class App extends Component {
           <input onInput={this.searchAnimals} type="text" />
         </header>
         <main>
-          <div className="card_container">{this.animal_cards}</div>
+          <div className="card_container">{animal_cards}</div>
         </main>
       </div>
     );
