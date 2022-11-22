@@ -18,9 +18,12 @@ const Card = (props) => {
             <span className="material-symbols-outlined">remove</span>
           </button>
           <span className={classes.heart}>
-            <span className={classes.heart_icon}>
-              &#128148; &#10084;&#65039;
-            </span>{" "}
+            {props.likes < 0 && (
+              <span className={classes.heart_icon}>&#128148;</span>
+            )}
+            {props.likes >= 0 && (
+              <span className={classes.heart_icon}>&#10084;&#65039;</span>
+            )}
             {props.likes}
           </span>
           <button className={classes.like_btn} onClick={props.like}>

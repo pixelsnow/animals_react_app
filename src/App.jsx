@@ -27,7 +27,7 @@ class App extends Component {
   unlikeAnimal = (animal_name) => {
     this.setState((state) => {
       const updatedArray = state.animals.map((animal) => {
-        if (animal.name === animal_name && animal.likes) {
+        if (animal.name === animal_name) {
           return {
             ...animal,
             likes: animal.likes - 1,
