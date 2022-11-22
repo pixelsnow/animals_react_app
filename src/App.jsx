@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import "./App.css";
-import { animals } from "./animals";
-import Card from "./UI/Card";
+import { animals } from "./animals_and_birds";
+import { birds } from "./animals_and_birds";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import Animals from "./Animals.jsx";
+import About from "./About.jsx";
 
 class App extends Component {
   state = {
     animals: animals,
+    birds: birds,
     search: "",
   };
 
@@ -42,7 +46,10 @@ class App extends Component {
     });
   };
 
-  deleteAnimal = (animal_name) => {
+  deleteAnimal = (animal_name, data) => {
+    if (data === "animals") {
+    } else if (data === "birds") {
+    }
     const updatedArray = this.state.animals.filter(
       (animal) => animal.name !== animal_name
     );
@@ -60,33 +67,40 @@ class App extends Component {
   };
 
   render() {
-    const animalsFiltered = this.state.animals.filter(
-      (animal) =>
-        animal.name.toLowerCase().slice(0, this.state.search.length) ===
-        this.state.search.toLowerCase()
-    );
-
-    const animal_cards = animalsFiltered.map((animal) => (
-      <Card
-        name={animal.name}
-        key={animal.name}
-        likes={animal.likes}
-        like={() => this.likeAnimal(animal.name)}
-        unlike={() => this.unlikeAnimal(animal.name)}
-        delete={() => this.deleteAnimal(animal.name)}
-      />
-    ));
-
     return (
-      <div className="App">
-        <header>
-          <h1>Search {this.state.animals.length} animals</h1>
-          <input onChange={this.filterAnimals} type="text" />
-        </header>
-        <main>
-          <div className="card_container">{animal_cards}</div>
-        </main>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <header>
+            <Routes>
+              <Route
+                path="/animals"
+                element={
+                  <Animals type="animals" animals={this.state.animals} />
+                }
+              ></Route>
+              <Route
+                path="/birds"
+                element={<Animals type="birds" animals={this.state.birds} />}
+              ></Route>
+              <Route path="/about" element={<About />}></Route>
+              <Route path="*" element={<NotFound />}></Route>
+            </Routes>
+            <nav>
+              <Link to="/animals">Animals</Link>
+              <Link to="/birds">Birds</Link>
+              <Link to="/about">About</Link>
+            </nav>
+          </header>
+          <main>
+            <Link to="/animals">
+              <div>Animals</div>
+            </Link>
+            <Link to="/birds">
+              <div>Birds</div>
+            </Link>
+          </main>
+        </div>
+      </BrowserRouter>
     );
   }
 }

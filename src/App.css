@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
 
 .App {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 h1,
@@ -23,12 +24,13 @@ header {
 }
 
 header h1 {
-  font-size: 2.3rem;
-  margin: 2rem 0;
+  font-size: 2rem;
+  margin: 2rem 0 0.5rem;
 }
 
 header input {
   padding: 0.5rem 1rem;
+  margin: 0.5rem 0 2rem;
   font-family: inherit;
   font-size: inherit;
   border: none;

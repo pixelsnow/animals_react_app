@@ -41,7 +41,7 @@
 .like_buttons .heart {
   margin: 0 1rem;
   font-size: 1.2rem;
-  color: lightcoral;
+  color: rgb(227, 58, 58);
   display: flex;
   justify-content: space-between;
   width: 2.2rem;

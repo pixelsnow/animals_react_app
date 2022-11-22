@@ -1,3 +1,4 @@
+import React from "react";
 import classes from "./Card.module.css";
 /* import "./Card.module.css"; */
 
@@ -19,10 +20,22 @@ const Card = (props) => {
           </button>
           <span className={classes.heart}>
             {props.likes < 0 && (
-              <span className={classes.heart_icon}>&#128148;</span>
+              <span
+                role="img"
+                aria-label="broken-heart"
+                className={classes.heart_icon}
+              >
+                &#128148;
+              </span>
             )}
             {props.likes >= 0 && (
-              <span className={classes.heart_icon}>&#10084;&#65039;</span>
+              <span
+                role="img"
+                aria-label="heart"
+                className={classes.heart_icon}
+              >
+                &#10084;&#65039;
+              </span>
             )}
             {props.likes}
           </span>
